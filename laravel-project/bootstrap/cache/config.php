@@ -10,7 +10,7 @@
     'locale' => 'en',
     'fallback_locale' => 'en',
     'faker_locale' => 'en_US',
-    'key' => 'base64:04fmDq+YOXf4b4E4xqSI/zWmG5vohiXRmJktllcCDT4=',
+    'key' => '',
     'cipher' => 'AES-256-CBC',
     'maintenance' => 
     array (
@@ -190,7 +190,7 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => 'C:\\Users\\princ\\Documents\\lads docs\\qa-recruitment-tests\\take-home-test\\laravel-project\\storage\\framework/cache/data',
+        'path' => 'C:\\Users\\IT-Admin\\Take-Home-Assessment\\laravel-project\\storage\\framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -235,6 +235,34 @@
       ),
     ),
     'prefix' => 'laravel_cache_',
+  ),
+  'cors' => 
+  array (
+    'paths' => 
+    array (
+      0 => 'api/*',
+      1 => 'sanctum/csrf-cookie',
+    ),
+    'allowed_methods' => 
+    array (
+      0 => '*',
+    ),
+    'allowed_origins' => 
+    array (
+      0 => '*',
+    ),
+    'allowed_origins_patterns' => 
+    array (
+    ),
+    'allowed_headers' => 
+    array (
+      0 => '*',
+    ),
+    'exposed_headers' => 
+    array (
+    ),
+    'max_age' => 0,
+    'supports_credentials' => false,
   ),
   'database' => 
   array (
@@ -335,13 +363,13 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\Users\\princ\\Documents\\lads docs\\qa-recruitment-tests\\take-home-test\\laravel-project\\storage\\app',
+        'root' => 'C:\\Users\\IT-Admin\\Take-Home-Assessment\\laravel-project\\storage\\app',
         'throw' => false,
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\Users\\princ\\Documents\\lads docs\\qa-recruitment-tests\\take-home-test\\laravel-project\\storage\\app/public',
+        'root' => 'C:\\Users\\IT-Admin\\Take-Home-Assessment\\laravel-project\\storage\\app/public',
         'url' => 'http://localhost:8000/storage',
         'visibility' => 'public',
         'throw' => false,
@@ -361,7 +389,7 @@
     ),
     'links' => 
     array (
-      'C:\\Users\\princ\\Documents\\lads docs\\qa-recruitment-tests\\take-home-test\\laravel-project\\public\\storage' => 'C:\\Users\\princ\\Documents\\lads docs\\qa-recruitment-tests\\take-home-test\\laravel-project\\storage\\app/public',
+      'C:\\Users\\IT-Admin\\Take-Home-Assessment\\laravel-project\\public\\storage' => 'C:\\Users\\IT-Admin\\Take-Home-Assessment\\laravel-project\\storage\\app/public',
     ),
   ),
   'logging' => 
@@ -386,14 +414,14 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => 'C:\\Users\\princ\\Documents\\lads docs\\qa-recruitment-tests\\take-home-test\\laravel-project\\storage\\logs/laravel.log',
+        'path' => 'C:\\Users\\IT-Admin\\Take-Home-Assessment\\laravel-project\\storage\\logs/laravel.log',
         'level' => 'debug',
         'replace_placeholders' => true,
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => 'C:\\Users\\princ\\Documents\\lads docs\\qa-recruitment-tests\\take-home-test\\laravel-project\\storage\\logs/laravel.log',
+        'path' => 'C:\\Users\\IT-Admin\\Take-Home-Assessment\\laravel-project\\storage\\logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
         'replace_placeholders' => true,
@@ -449,7 +477,7 @@
       ),
       'emergency' => 
       array (
-        'path' => 'C:\\Users\\princ\\Documents\\lads docs\\qa-recruitment-tests\\take-home-test\\laravel-project\\storage\\logs/laravel.log',
+        'path' => 'C:\\Users\\IT-Admin\\Take-Home-Assessment\\laravel-project\\storage\\logs/laravel.log',
       ),
     ),
   ),
@@ -529,7 +557,7 @@
       'theme' => 'default',
       'paths' => 
       array (
-        0 => 'C:\\Users\\princ\\Documents\\lads docs\\qa-recruitment-tests\\take-home-test\\laravel-project\\resources\\views/vendor/mail',
+        0 => 'C:\\Users\\IT-Admin\\Take-Home-Assessment\\laravel-project\\resources\\views/vendor/mail',
       ),
     ),
   ),
@@ -640,7 +668,7 @@
     'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => 'C:\\Users\\princ\\Documents\\lads docs\\qa-recruitment-tests\\take-home-test\\laravel-project\\storage\\framework/sessions',
+    'files' => 'C:\\Users\\IT-Admin\\Take-Home-Assessment\\laravel-project\\storage\\framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -661,9 +689,9 @@
   array (
     'paths' => 
     array (
-      0 => 'C:\\Users\\princ\\Documents\\lads docs\\qa-recruitment-tests\\take-home-test\\laravel-project\\resources\\views',
+      0 => 'C:\\Users\\IT-Admin\\Take-Home-Assessment\\laravel-project\\resources\\views',
     ),
-    'compiled' => false,
+    'compiled' => 'C:\\Users\\IT-Admin\\Take-Home-Assessment\\laravel-project\\storage\\framework\\views',
   ),
   'flare' => 
   array (
@@ -749,7 +777,7 @@
     array (
     ),
     'enable_runnable_solutions' => NULL,
-    'remote_sites_path' => 'C:\\Users\\princ\\Documents\\lads docs\\qa-recruitment-tests\\take-home-test\\laravel-project',
+    'remote_sites_path' => 'C:\\Users\\IT-Admin\\Take-Home-Assessment\\laravel-project',
     'local_sites_path' => '',
     'housekeeping_endpoint_prefix' => '_ignition',
     'settings_file_path' => '',
