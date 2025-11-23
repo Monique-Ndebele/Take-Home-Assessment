@@ -2,137 +2,151 @@
   "info": {
     "name": "Laravel QA Assessment API",
     "_postman_id": "qa-assessment-collection",
-    "description": "Collection for all Laravel API endpoints (auth, users, products, orders)",
+    "description": "Complete Laravel API collection (Auth, Users, Products, Orders) with auth token handling and response tests.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
     {
-      "name": "Auth - Register",
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n  \"name\": \"Test User\",\n  \"email\": \"{{user_email}}\",\n  \"password\": \"{{user_password}}\"\n}"
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type","value": "application/json"}],
+            "body": {"mode":"raw","raw":"{\n  \"name\": \"Test User\",\n  \"email\": \"{{user_email}}\",\n  \"password\": \"{{user_password}}\"\n}"},
+            "url":{"raw":"{{base_url}}/api/register","host":["{{base_url}}"],"path":["api","register"]}
+          },
+          "event":[
+            {
+              "listen":"test",
+              "script":{"exec":["pm.test('Register successful', function(){ pm.response.to.have.status(201); });"]}
+            }
+          ]
         },
-        "url": {
-          "raw": "{{base_url}}/api/register",
-          "host": ["{{base_url}}"],
-          "path": ["api","register"]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Auth - Login",
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n  \"email\": \"{{user_email}}\",\n  \"password\": \"{{user_password}}\"\n}"
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type","value": "application/json"}],
+            "body": {"mode":"raw","raw":"{\n  \"email\": \"{{user_email}}\",\n  \"password\": \"{{user_password}}\"\n}"},
+            "url":{"raw":"{{base_url}}/api/login","host":["{{base_url}}"],"path":["api","login"]}
+          },
+          "event":[
+            {
+              "listen":"test",
+              "script":{"exec":[
+                "// Save auth token to environment",
+                "if(pm.response.code === 200){",
+                "    var jsonData = pm.response.json();",
+                "    pm.environment.set('auth_token', jsonData.access_token);",
+                "}",
+                "pm.test('Login successful', function(){ pm.response.to.have.status(200); });"
+              ]}
+            }
+          ]
         },
-        "url": {
-          "raw": "{{base_url}}/api/login",
-          "host": ["{{base_url}}"],
-          "path": ["api","login"]
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Authorization","value": "Bearer {{auth_token}}"}],
+            "url":{"raw":"{{base_url}}/api/logout","host":["{{base_url}}"],"path":["api","logout"]}
+          },
+          "event":[
+            {"listen":"test","script":{"exec":["pm.test('Logout successful', function(){ pm.response.to.have.status(200); });"]}}
+          ]
+        },
+        {
+          "name": "Get User",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization","value": "Bearer {{auth_token}}"}],
+            "url":{"raw":"{{base_url}}/api/user","host":["{{base_url}}"],"path":["api","user"]}
+          },
+          "event":[
+            {"listen":"test","script":{"exec":["pm.test('Get user info', function(){ pm.response.to.have.status(200); });"]}}
+          ]
         }
-      },
-      "response": []
+      ]
     },
     {
-      "name": "Auth - Logout",
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer {{auth_token}}"
-          }
-        ],
-        "url": {
-          "raw": "{{base_url}}/api/logout",
-          "host": ["{{base_url}}"],
-          "path": ["api","logout"]
+      "name": "Users",
+      "item": [
+        {
+          "name": "List All",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization","value": "Bearer {{auth_token}}"}],
+            "url":{"raw":"{{base_url}}/api/users","host":["{{base_url}}"],"path":["api","users"]}
+          },
+          "event":[{"listen":"test","script":{"exec":["pm.test('Users list', function(){ pm.response.to.have.status(200); });"]}}]
+        },
+        {
+          "name": "Get by ID",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization","value": "Bearer {{auth_token}}"}],
+            "url":{"raw":"{{base_url}}/api/users/1","host":["{{base_url}}"],"path":["api","users","1"]}
+          },
+          "event":[{"listen":"test","script":{"exec":["pm.test('Get user by ID', function(){ pm.response.to.have.status(200); });"]}}]
+        },
+        {
+          "name": "Update",
+          "request": {
+            "method": "PUT",
+            "header": [{"key": "Authorization","value": "Bearer {{auth_token}}"},{"key":"Content-Type","value":"application/json"}],
+            "body":{"mode":"raw","raw":"{\n  \"name\": \"Updated Name\"\n}"},
+            "url":{"raw":"{{base_url}}/api/users/1","host":["{{base_url}}"],"path":["api","users","1"]}
+          },
+          "event":[{"listen":"test","script":{"exec":["pm.test('Update user', function(){ pm.response.to.have.status(200); });"]}}]
         }
-      },
-      "response": []
+      ]
     },
     {
-      "name": "Auth - Get User",
-      "request": {
-        "method": "GET",
-        "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer {{auth_token}}"
-          }
-        ],
-        "url": {
-          "raw": "{{base_url}}/api/user",
-          "host": ["{{base_url}}"],
-          "path": ["api","user"]
+      "name": "Products",
+      "item": [
+        {
+          "name": "List All",
+          "request": {
+            "method": "GET",
+            "url":{"raw":"{{base_url}}/api/products","host":["{{base_url}}"],"path":["api","products"]}
+          },
+          "event":[{"listen":"test","script":{"exec":["pm.test('Products list', function(){ pm.response.to.have.status(200); });"]}}]
+        },
+        {
+          "name": "Get by ID",
+          "request": {
+            "method": "GET",
+            "url":{"raw":"{{base_url}}/api/products/1","host":["{{base_url}}"],"path":["api","products","1"]}
+          },
+          "event":[{"listen":"test","script":{"exec":["pm.test('Get product by ID', function(){ pm.response.to.have.status(200); });"]}}]
+        },
+        {
+          "name": "Create",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Authorization","value": "Bearer {{auth_token}}"},{"key":"Content-Type","value":"application/json"}],
+            "body":{"mode":"raw","raw":"{\n  \"name\": \"New Product\",\n  \"price\": 10.50,\n  \"description\": \"Sample product\"\n}"},
+            "url":{"raw":"{{base_url}}/api/products","host":["{{base_url}}"],"path":["api","products"]}
+          },
+          "event":[{"listen":"test","script":{"exec":["pm.test('Create product', function(){ pm.response.to.have.status(201); });"]}}]
         }
-      },
-      "response": []
+      ]
     },
     {
-      "name": "Users - List All",
-      "request": {
-        "method": "GET",
-        "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer {{auth_token}}"
-          }
-        ],
-        "url": {
-          "raw": "{{base_url}}/api/users",
-          "host": ["{{base_url}}"],
-          "path": ["api","users"]
+      "name": "Orders",
+      "item": [
+        {
+          "name": "List User Orders",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization","value": "Bearer {{auth_token}}"}],
+            "url":{"raw":"{{base_url}}/api/orders","host":["{{base_url"],"path":["api","orders"]}
+          },
+          "event":[{"listen":"test","script":{"exec":["pm.test('List orders', function(){ pm.response.to.have.status(200); });"]}}]
         }
-      },
-      "response": []
-    },
-    {
-      "name": "Products - List All",
-      "request": {
-        "method": "GET",
-        "url": {
-          "raw": "{{base_url}}/api/products",
-          "host": ["{{base_url}}"],
-          "path": ["api","products"]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "Orders - List User Orders",
-      "request": {
-        "method": "GET",
-        "header": [
-          {
-            "key": "Authorization",
-            "value": "Bearer {{auth_token}}"
-          }
-        ],
-        "url": {
-          "raw": "{{base_url}}/api/orders",
-          "host": ["{{base_url}}"],
-          "path": ["api","orders"]
-        }
-      },
-      "response": []
+      ]
     }
   ]
 }
