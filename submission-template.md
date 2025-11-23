@@ -8,7 +8,7 @@
 
 **Submission Date**: 24/11/2025
 
-**GitHub/GitLab Repository URL**: [Repository URL]
+**GitHub/GitLab Repository URL**: https://github.com/Monique-Ndebele/Take-Home-Assessment.git 
 
 
 
@@ -24,7 +24,7 @@ Check off each item as you complete it:
 - [ done] Test Plan with 50+ test cases (`test-plan.xlsx` or `.md`)
 - [ done] Bug Reports - 30+ bugs (`bug-reports.xlsx` or bug tracking export)
 - [done ] Laravel Automated Tests (80%+ coverage)
-- [ ] Flutter Automated Tests (80%+ coverage)
+- [ done] Flutter Automated Tests (80%+ coverage)
 - [ done] Postman Collection (`api-tests.postman_collection.json`)
 - [done ] Postman Environment (`api-tests.postman_environment.json`)
 - [ done] Automated API Tests
@@ -125,7 +125,7 @@ Provide an estimate of time spent on each major activity:
 | Manual Testing | __3 hours_ |
 | Bug Reporting | 5 hours___ |
 | Laravel Test Automation | _2 hours__ |
-| Flutter Test Automation | ___ |
+| Flutter Test Automation | ___2 |
 | API Testing | _2 hours__ |
 | Performance Testing | ___ |
 | Documentation | ___3 hours |
